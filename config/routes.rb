@@ -3,6 +3,7 @@ Registration::Application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :destory]
+  resources :microposts, only: [:create, :destroy]
 
   match '/home',  to: 'users#index'
 

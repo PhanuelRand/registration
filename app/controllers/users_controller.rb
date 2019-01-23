@@ -13,6 +13,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if signed_in?
+      @micropost  = current_user.microposts.build
+      @feed_items = current_user.feed.paginate(page: params[:page])
+    end
 
     respond_to do |format|
       format.html # show.html.erb

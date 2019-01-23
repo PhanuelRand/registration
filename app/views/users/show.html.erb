@@ -1,15 +1,32 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-4 col-12">
+    <p>
+      <b>Name:</b>
+      <%= current_user.name %>
+    </p>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
+    <p>
+      <b>Email:</b>
+      <%= current_user.email %>
+    </p>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
+    <%= form_for(@micropost) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="field">
+        <%= f.text_area :content, placeholder: "Compose new micropost...", :class => 'form-control', :rows => '10' %>
+      </div>
+      <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+    <% end %>
+ 
+
+  </div>
+  <div class="col-lg-8 col-12">
+     <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%# <%= link_to 'Edit', edit_user_path(@user) %> 
+<%# <%= link_to 'Back', users_path %> 
