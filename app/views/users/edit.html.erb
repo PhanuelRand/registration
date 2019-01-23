@@ -1,6 +1,30 @@
-<h1>Editing user</h1>
+<% provide(:title, "Edit user") %>
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Sign up</h1>
+    </div>
+    <div style="margin: 0 auto;" class="col-lg-4 col-12">
+        <%= form_for(@user) do |f| %>
+            <%# <%= render 'shared/error_messages' %>
 
-<%= render 'form' %>
+            <%= f.label :name %>
+            <%= f.text_field :name, {:class => 'form-control'}  %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+            <%= f.label :email %>
+            <%= f.text_field :email, {:class => 'form-control'}  %>
+
+            <%= f.label :password, "New Password" %>
+            <%= f.password_field :password, {:class => 'form-control'}  %>
+
+            <%= f.label :password_confirmation, "Confirm New Password" %>
+            <%= f.password_field :password_confirmation, {:class => 'form-control'}  %>
+
+            <br />
+
+            <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+        <% end %>
+        <br />
+    <%# <%= gravatar_for @user %>
+    <%# <a class="btn btn-large btn-success" href="http://gravatar.com/emails">change</a> %>
+    </div>
+</div>
