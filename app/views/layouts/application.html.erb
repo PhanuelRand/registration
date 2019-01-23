@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registration</title>
+  <title>Authentification</title>
+  <%= stylesheet_link_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<nav class="navbar navbar-expand-lg bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand white" href="/home">My first App</a>
+    <ul class="navbar-nav ml-auto">
+      <% if signed_in? %>
+        <li class="nav-item active">
+          <a class="nav-link white" href="/home">Home</a>
+        </li>
+       <li class="nav-item">
+        <a class="nav-link white" href="/logout" method="delete">Logout</a>
+      </li>
+      <% else %>
+        <li class="nav-item active">
+          <a class="nav-link white" href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link white" href="/signup">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link white" href="/login">Login</a>
+        </li>
+      <% end %>         
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+<br />
+<br />
+<%= debug(params) if Rails.env.development? %>
 
 </body>
 </html>
